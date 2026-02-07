@@ -9,6 +9,7 @@ import com.example.backend.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -20,12 +21,14 @@ import java.util.Optional;
 @Service
 public class AuthService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Value("${jwt.secret}")
     private String jwtSecret;
 
-    public AuthService(UserRepository userRepository) {
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional
@@ -41,7 +44,9 @@ public class AuthService {
         User user = User.builder()
                 .username(request.getUsername())
                 .email(request.getEmail())
-                .password(request.getPassword())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
                 .build();
 
         userRepository.save(user);

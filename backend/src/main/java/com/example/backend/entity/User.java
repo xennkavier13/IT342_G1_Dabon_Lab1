@@ -36,11 +36,11 @@ public class User {
 
     @Column(length = 255, nullable = false)
     private String password;
-
-    @Column(length = 32, nullable = false, unique = true)
+    
+    @Column(length = 32, nullable = true)
     private String firstName;
 
-    @Column(length = 32, nullable = false, unique = true)
+        @Column(length = 32, nullable = true)
     private String lastName;
 
     @CreationTimestamp
