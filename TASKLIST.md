@@ -1,19 +1,50 @@
-## TODO
-### Spring Boot
-- POST /api/auth/register/
-- POST /api/auth/login
-- GET /api/user/me (protected)
-### React
-- Register page
-- Login page
-- Dashboard/Profile page (protected)
-- Logout functionality
-## IN-PROGRESS
-- Create Register Page
-- Create Login Page
+#  Project Task List & Progress
+
+##  TODO
+
+### Spring Boot (Backend)
+- Complete `GET /api/user/me` (protected)
+
+### React (Frontend)
+- Create Dashboard / Profile page (protected)
+- Wire Dashboard to `/api/user/me`
+- Improve auth guard for protected routes
+
+---
+
+## IN PROGRESS
+- `GET /api/user/me` endpoint (protected)
+
+---
+
 ## DONE
-- Created User Classes (eb7495489aae15324030404d615e6eb58be36c15)
-- Added docs PDF file (eb7495489aae15324030404d615e6eb58be36c15)
-- Created Authentication related classes (8a26a4f0e4ecee1a89ce326b5dabc8264b70d538)
-- Authentication Logic Implementation (b466bbcbf47f1e2c90ec1e93cf203e9a165fc4c3)
-- Successfully tested Register and Login endpoints via Postman (eeac4f40017bd71890d3995e7a6af5c94c721117)
+
+### Backend (Spring Boot)
+- Created User entity and related classes  
+  `eb7495489aae15324030404d615e6eb58be36c15`
+
+- Added project documentation (PDF)  
+  `eb7495489aae15324030404d615e6eb58be36c15`
+
+- Created authentication-related classes (Controller, Service, DTOs, etc.)  
+  `8a26a4f0e4ecee1a89ce326b5dabc8264b70d538`
+
+- Implemented authentication logic (register & login)  
+  `b466bbcbf47f1e2c90ec1e93cf203e9a165fc4c3`
+
+- Successfully tested Register and Login endpoints via Postman  
+  `eeac4f40017bd71890d3995e7a6af5c94c721117`
+
+- Implemented `POST /api/auth/register`  
+  `3c4084572199f0b5c107dbf6d78b`
+
+
+### Frontend (React)
+- Created Register page  
+  `3c4084572199f0b5c107dbf6d78b811189f27487`
+
+- Created Login page  
+  `3c4084572199f0b5c107dbf6d78b811189f27487`
+
+- Implemented Logout functionality  
+  `3c4084572199f0b5c107dbf6d78b811189f27487`
