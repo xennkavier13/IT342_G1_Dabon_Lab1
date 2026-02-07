@@ -30,9 +30,6 @@ const DashboardPage = () => {
 					<h2 className="font-display text-2xl font-semibold text-slate-900">
 						Account snapshot
 					</h2>
-					<p className="mt-2 text-sm text-slate-500">
-						Backend: Spring Boot JWT auth at <span className="font-semibold">/api/auth</span>
-					</p>
 				</div>
 				<div className="mt-6 grid gap-4 md:grid-cols-2">
 					<div className="rounded-2xl border border-teal-100 bg-slate-50/80 p-4">
