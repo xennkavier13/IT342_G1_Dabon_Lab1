@@ -9,10 +9,9 @@
 - Dashboard/Profile page (protected)
 - Logout functionality
 ## IN-PROGRESS
-- Create User classes
-- Added docs PDF file
+- Create Authentication related classes
 - 
 ## DONE
-- 
-- 
+- Created User Classes (eb7495489aae15324030404d615e6eb58be36c15)
+- Added docs PDF file (eb7495489aae15324030404d615e6eb58be36c15)
 -
