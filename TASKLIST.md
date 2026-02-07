@@ -14,6 +14,7 @@
 
 ## IN PROGRESS
 - `GET /api/user/me` endpoint (protected)
+- Update documentation (Class Diagram)
 
 ---
 
