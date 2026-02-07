@@ -63,7 +63,7 @@ public class AuthService {
 
         Instant expiration = Instant.now().plus(24, ChronoUnit.HOURS);
         String token = Jwts.builder()
-                .claim("user_id", user.getUserId())
+                .claim("userId", user.getUserId())
                 .setExpiration(Date.from(expiration))
                 .signWith(SignatureAlgorithm.HS256, jwtSecret.getBytes())
                 .compact();
