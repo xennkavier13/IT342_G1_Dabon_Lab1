@@ -6,13 +6,13 @@
 ### React
 - Register page
 - Login page
-- Dshboard/Profile page (protected)
+- Dashboard/Profile page (protected)
 - Logout functionality
 ## IN-PROGRESS
--
--
--
+- Create User classes
+- Added docs PDF file
+- 
 ## DONE
--
--
+- 
+- 
 -
