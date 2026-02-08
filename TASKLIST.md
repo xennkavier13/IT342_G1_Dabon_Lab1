@@ -13,9 +13,9 @@
 ---
 
 ## IN PROGRESS
-- `GET /api/user/me` endpoint (protected)
 - Update documentation (Class Diagram)
-
+- Create Dashboard / Profile page (protected)
+- Improve auth guard for protected routes
 ---
 
 ## DONE
@@ -38,6 +38,8 @@
 
 - Implemented `POST /api/auth/register`  
   `3c4084572199f0b5c107dbf6d78b`
+
+- Implemented `GET /api/user/me` endpoint (protected) `b897f373feb798561c240861a6ded80f04e90b16`
 
 
 ### Frontend (React)
