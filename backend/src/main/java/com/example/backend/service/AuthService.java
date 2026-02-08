@@ -1,34 +1,27 @@
 package com.example.backend.service;
 
 
+import com.example.backend.config.TokenProvider;
 import com.example.backend.dto.request.LoginRequest;
 import com.example.backend.dto.request.RegisterRequest;
 import com.example.backend.dto.response.AuthResponse;
 import com.example.backend.entity.User;
 import com.example.backend.repository.UserRepository;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
 import java.util.Optional;
 
 @Service
 public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final TokenProvider tokenProvider;
 
-    @Value("${jwt.secret}")
-    private String jwtSecret;
-
-    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder, TokenProvider tokenProvider) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.tokenProvider = tokenProvider;
     }
 
     @Transactional
@@ -61,12 +54,7 @@ public class AuthService {
 
         User user = optionalUser.get();
 
-        Instant expiration = Instant.now().plus(24, ChronoUnit.HOURS);
-        String token = Jwts.builder()
-                .claim("userId", user.getUserId())
-                .setExpiration(Date.from(expiration))
-                .signWith(SignatureAlgorithm.HS256, jwtSecret.getBytes())
-                .compact();
+        String token = tokenProvider.generateToken(user);
 
         return new AuthResponse(token, user.getUsername(), user.getEmail());
     }
