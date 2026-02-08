@@ -1,6 +1,8 @@
 package com.example.backend.config;
 
 import com.example.backend.entity.User;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -37,5 +39,26 @@ public class TokenProvider {
 				.setExpiration(Date.from(expiration))
 				.signWith(signingKey, SignatureAlgorithm.HS256)
 				.compact();
+	}
+
+	public boolean isTokenValid(String token) {
+		try {
+			parseClaims(token);
+			return true;
+		} catch (JwtException | IllegalArgumentException ex) {
+			return false;
+		}
+	}
+
+	public String getUsernameFromToken(String token) {
+		return parseClaims(token).getSubject();
+	}
+
+	private Claims parseClaims(String token) {
+		return Jwts.parserBuilder()
+				.setSigningKey(signingKey)
+				.build()
+				.parseClaimsJws(token)
+				.getBody();
 	}
 }
