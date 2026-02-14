@@ -11,10 +11,6 @@
 - Improve auth guard for protected routes
 
 ### Kotlin (Mobile) 
-- Create LoginActivity
-- Create RegisterActivity
-- Create DashboardActivity
-- Use same API for mobile
 - 
 ---
 
@@ -59,4 +55,9 @@
   `3c4084572199f0b5c107dbf6d78b811189f27487`
 
 ### Mobile (Kotlin)  
-- Setup project for mobile `9fafc3823a56326c040c905a2604946c06670077`
+- Setup project for mobile  `9fafc3823a56326c040c905a2604946c06670077`
+- Use same API for mobile `9fafc3823a56326c040c905a2604946c06670077`
+- Create LoginActivity `9fafc3823a56326c040c905a2604946c06670077`
+- Create RegisterActivity `9fafc3823a56326c040c905a2604946c06670077`
+- Create DashboardActivity 
+`9fafc3823a56326c040c905a2604946c06670077`
