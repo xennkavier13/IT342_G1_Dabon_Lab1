@@ -18,6 +18,7 @@
 - Update documentation (Class Diagram)
 - Create Dashboard / Profile page (protected)
 - Improve auth guard for protected routes
+- Logout
 ---
 
 ## DONE
