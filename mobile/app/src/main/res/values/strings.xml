@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Mobile</string>
+
+    <string name="login_title">Login</string>
+    <string name="register_title">Register</string>
+    <string name="dashboard_title">Dashboard</string>
+
+    <string name="label_identifier">Username or Email</string>
+    <string name="label_username">Username</string>
+    <string name="label_email">Email</string>
+    <string name="label_password">Password</string>
+    <string name="label_first_name">First Name</string>
+    <string name="label_last_name">Last Name</string>
+    <string name="label_full_name">Full Name</string>
+    <string name="label_user_id">User ID</string>
+    <string name="label_created_at">Created At</string>
+
+    <string name="action_login">Sign In</string>
+    <string name="action_register">Create Account</string>
+    <string name="action_go_register">No account? Register</string>
+    <string name="action_go_login">Have an account? Sign In</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_logout">Logout</string>
+
+    <string name="status_loading">Loading...</string>
+    <string name="status_login_success">Login successful</string>
+    <string name="status_register_success">Registration successful</string>
+    <string name="error_required_fields">Please fill in the required fields.</string>
+    <string name="value_not_set">Not set</string>
+</resources>
