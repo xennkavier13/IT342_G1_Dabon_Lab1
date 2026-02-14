@@ -22,7 +22,6 @@
 - Update documentation (Class Diagram)
 - Create Dashboard / Profile page (protected)
 - Improve auth guard for protected routes
-- Setup project for mobile
 ---
 
 ## DONE
@@ -60,3 +59,4 @@
   `3c4084572199f0b5c107dbf6d78b811189f27487`
 
 ### Mobile (Kotlin)  
+- Setup project for mobile `9fafc3823a56326c040c905a2604946c06670077`
