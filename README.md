@@ -6,15 +6,11 @@ Full-stack sample with a Spring Boot backend, a React web client, and an Android
 
 **Backend**
 - Java 21, Spring Boot 4 (WebMVC, Data JPA, Validation)
-- JWT auth via `io.jsonwebtoken`
-- MySQL, Hibernate
-- Lombok, Spring Security Crypto
+- MySQL
 
 **Web**
 - React, TypeScript, Vite
 - Tailwind CSS
-- Axios, React Router
-- ESLint
 
 **Mobile**
 - Android (Kotlin)
