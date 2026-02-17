@@ -3,21 +3,16 @@
 ##  TODO
 
 ### Spring Boot (Backend)
-- Complete `GET /api/user/me` (protected)
+-
 
 ### React (Frontend)
-- Create Dashboard / Profile page (protected)
-- Wire Dashboard to `/api/user/me`
-- Improve auth guard for protected routes
+- 
 
 ### Kotlin (Mobile) 
 - 
 ---
 
 ## IN PROGRESS
-- Update documentation (Class Diagram)
-- Create Dashboard / Profile page (protected)
-- Improve auth guard for protected routes
 - Logout
 ---
 
@@ -55,6 +50,10 @@
 - Implemented Logout functionality  
   `3c4084572199f0b5c107dbf6d78b811189f27487`
 
+- Create Dashboard / Profile page (protected) `729cac250a2aa70b8d57f29f885e4b178eab38e1`
+- Improve auth guard for protected routes ` 729cac250a2aa70b8d57f29f885e4b178eab38e1`
+
+
 ### Mobile (Kotlin)  
 - Setup project for mobile  `9fafc3823a56326c040c905a2604946c06670077`
 - Use same API for mobile `9fafc3823a56326c040c905a2604946c06670077`
@@ -62,3 +61,7 @@
 - Create RegisterActivity `9fafc3823a56326c040c905a2604946c06670077`
 - Create DashboardActivity 
 `9fafc3823a56326c040c905a2604946c06670077`
+- Implemented `GET /api/user/me` endpoint  `09ef4233409061bd3ca8eda2093ed67476fdbe76`
+
+### Documentation
+- Update documentation (Class Diagram) `551fa2fe67888eb0c5c409d16b98b4c6cceb9f22`
