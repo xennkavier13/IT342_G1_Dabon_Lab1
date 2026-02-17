@@ -1,15 +1,78 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PrimaryButton from "../components/PrimaryButton";
-import { clearAuth, getStoredUser, getToken } from "../utils/storage";
+import StatusMessage from "../components/StatusMessage";
+import { userApi } from "../api/user";
+import type { UserProfile } from "../types/user";
+import { clearAuth, getStoredUser } from "../utils/storage";
 
 const DashboardPage = () => {
 	const navigate = useNavigate();
-	const user = getStoredUser();
-	const token = getToken();
+	const storedUser = getStoredUser();
+	const [profile, setProfile] = useState<UserProfile | null>(null);
+	const [error, setError] = useState<string | null>(null);
+	const [isLoading, setIsLoading] = useState(true);
 
+	const user = profile ?? storedUser;
+	
 	const handleLogout = () => {
 		clearAuth();
 		navigate("/login");
+	};
+
+	useEffect(() => {
+		let isMounted = true;
+
+		const loadProfile = async () => {
+			try {
+				const response = await userApi.getCurrentUser();
+				if (isMounted) {
+					setProfile(response);
+					setError(null);
+				}
+			} catch (err) {
+				if (!isMounted) {
+					return;
+				}
+
+				const message =
+					err && typeof err === "object" && "message" in err
+						? String((err as { message: string }).message)
+						: "Unable to load your profile.";
+				setError(message);
+
+				if (err && typeof err === "object" && "status" in err) {
+					const status = Number((err as { status?: number }).status ?? 0);
+					if (status === 401) {
+						clearAuth();
+						navigate("/login");
+					}
+				}
+			} finally {
+				if (isMounted) {
+					setIsLoading(false);
+				}
+			}
+		};
+
+		loadProfile();
+
+		return () => {
+			isMounted = false;
+		};
+	}, [navigate]);
+
+	const formatCreatedAt = (value?: string) => {
+		if (!value) {
+			return "Not available";
+		}
+
+		const parsed = new Date(value);
+		if (Number.isNaN(parsed.getTime())) {
+			return value;
+		}
+
+		return parsed.toLocaleString();
 	};
 
 	return (
@@ -31,13 +94,18 @@ const DashboardPage = () => {
 						Account snapshot
 					</h2>
 				</div>
+				{error ? (
+					<div className="mt-4">
+						<StatusMessage variant="error" message={error} />
+					</div>
+				) : null}
 				<div className="mt-6 grid gap-4 md:grid-cols-2">
 					<div className="rounded-2xl border border-teal-100 bg-slate-50/80 p-4">
 						<p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
 							Username
 						</p>
 						<p className="mt-2 text-lg font-semibold text-slate-900">
-							{user?.username ?? "Not available"}
+							{isLoading ? "Loading..." : user?.username ?? "Not available"}
 						</p>
 					</div>
 					<div className="rounded-2xl border border-teal-100 bg-slate-50/80 p-4">
@@ -45,7 +113,31 @@ const DashboardPage = () => {
 							Email
 						</p>
 						<p className="mt-2 text-lg font-semibold text-slate-900">
-							{user?.email ?? "Not available"}
+							{isLoading ? "Loading..." : user?.email ?? "Not available"}
+						</p>
+					</div>
+					<div className="rounded-2xl border border-teal-100 bg-slate-50/80 p-4">
+						<p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+							First name
+						</p>
+						<p className="mt-2 text-lg font-semibold text-slate-900">
+							{isLoading ? "Loading..." : user?.firstName ?? "Not available"}
+						</p>
+					</div>
+					<div className="rounded-2xl border border-teal-100 bg-slate-50/80 p-4">
+						<p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+							Last name
+						</p>
+						<p className="mt-2 text-lg font-semibold text-slate-900">
+							{isLoading ? "Loading..." : user?.lastName ?? "Not available"}
+						</p>
+					</div>
+					<div className="rounded-2xl border border-teal-100 bg-slate-50/80 p-4">
+						<p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+							Created at
+						</p>
+						<p className="mt-2 text-lg font-semibold text-slate-900">
+							{isLoading ? "Loading..." : formatCreatedAt(user?.createdAt)}
 						</p>
 					</div>
 				</div>

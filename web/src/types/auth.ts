@@ -12,7 +12,8 @@ export type RegisterRequest = {
 };
 
 export type AuthResponse = {
-  token: string;
+  jwt?: string;
+  token?: string;
   username: string;
   email: string;
 };

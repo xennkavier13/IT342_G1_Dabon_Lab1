@@ -33,7 +33,11 @@ const LoginPage = () => {
 
 		try {
 			const response = await authApi.login({ identifier, password });
-			setAuth(response.token, {
+			const token = response.jwt ?? response.token;
+			if (!token) {
+				throw new Error("Login response did not include a token.");
+			}
+			setAuth(token, {
 				username: response.username,
 				email: response.email,
 			});
