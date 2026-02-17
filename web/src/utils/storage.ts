@@ -1,10 +1,10 @@
+import type { UserProfile } from "../types/user";
+
 const TOKEN_KEY = "auth_token";
 const USER_KEY = "auth_user";
 
-type StoredUser = {
-  username: string;
-  email: string;
-};
+type StoredUser = Pick<UserProfile, "username" | "email"> &
+  Partial<Pick<UserProfile, "firstName" | "lastName" | "createdAt">>;
 
 export const setAuth = (token: string, user: StoredUser) => {
   localStorage.setItem(TOKEN_KEY, token);
