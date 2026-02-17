@@ -19,6 +19,13 @@ class UserRepository(
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
+                    sessionManager.saveUserSummary(
+                        body.username,
+                        body.email,
+                        body.firstName,
+                        body.lastName,
+                        body.createdAt
+                    )
                     Result.success(body)
                 } else {
                     Result.failure(IllegalStateException("Empty profile response"))

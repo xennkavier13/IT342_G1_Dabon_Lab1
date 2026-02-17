@@ -38,6 +38,20 @@ class DashboardFragment : Fragment() {
             return
         }
 
+        val notSetLabel = getString(R.string.value_not_set)
+        val applyStoredSummary = {
+            binding.usernameValue.text = sessionManager.getUsername() ?: notSetLabel
+            binding.emailValue.text = sessionManager.getEmail() ?: notSetLabel
+            val fullName = listOfNotNull(sessionManager.getFirstName(), sessionManager.getLastName())
+                .joinToString(" ")
+                .ifBlank { notSetLabel }
+            binding.nameValue.text = fullName
+            binding.createdAtValue.text = sessionManager.getCreatedAt() ?: notSetLabel
+            binding.userIdValue.text = notSetLabel
+        }
+
+        applyStoredSummary()
+
         binding.refreshButton.setOnClickListener {
             viewModel.loadProfile()
         }
@@ -51,6 +65,7 @@ class DashboardFragment : Fragment() {
             when (state) {
                 is UiState.Loading -> {
                     binding.statusText.text = getString(R.string.status_loading)
+                    applyStoredSummary()
                 }
                 is UiState.Success -> {
                     val profile = state.data
@@ -65,6 +80,7 @@ class DashboardFragment : Fragment() {
                 }
                 is UiState.Error -> {
                     binding.statusText.text = state.message
+                    applyStoredSummary()
                 }
                 UiState.Idle -> Unit
             }
